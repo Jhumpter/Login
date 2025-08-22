@@ -1,23 +1,30 @@
+using Login.Infrastructure;
+
 namespace Login
 {
     public partial class Form1 : Form
     {
+        private List<User> usuarios = new List<User>();
         public Form1()
         {
             InitializeComponent();
+            ObterUsuarios();
         }
-
-        private List<User> usuarios = new List<User>();
+        private void ObterUsuarios()
+        {
+            var userRepository = new UserRepository();
+            usuarios = userRepository.Get();
+        }
         bool VerificarUsuario(User user)
         {
             bool nome = false;
             bool senha = false;
             foreach(User usuario in usuarios)
             {
-                if (usuario.Username == user.Username)
+                if (usuario.username == user.username)
                 {
                     nome = true;
-                    if (usuario.Password == user.Password)
+                    if (usuario.senha == user.senha)
                     {
                         senha = true;
                     }
@@ -30,7 +37,7 @@ namespace Login
             bool nome = false;
             foreach (User usuario in usuarios)
             {
-                if (usuario.Username == user.Username)
+                if (usuario.username == user.username)
                 {
                     nome = true;
                 }
@@ -72,6 +79,13 @@ namespace Login
                 return;
             }
             usuarios.Add(newUser);
+            var userRepository = new UserRepository();
+            if (!userRepository.Add(newUser))
+            {
+                lResCadastro.ForeColor = Color.Red;
+                lResCadastro.Text = "Erro ao cadastrar usuário!";
+                return;
+            }
             lResCadastro.ForeColor = Color.ForestGreen;
             lResCadastro.Text = "Cadastro realizado com sucesso!";
         }

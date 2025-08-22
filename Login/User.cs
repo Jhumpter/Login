@@ -1,19 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Login
 {
-    internal class User
+    [Table("usuarios")]
+    public class User
     {
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public User(string username, string password)
+        public int id { get; set; }
+        public string username { get; set; }
+        public string senha { get; set; }
+        public User(){}
+        public User(string name, string password)
         {
-            Username = username;
-            Password = password;
+            username = name;
+            senha = password;
         }
     }
 }

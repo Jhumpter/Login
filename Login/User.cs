@@ -11,7 +11,6 @@ namespace Login
     [Table("usuarios")]
     public class User
     {
-        [Key]
         public int id { get; set; }
         public string username { get; set; }
         public string senha { get; set; }

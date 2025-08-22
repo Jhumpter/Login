@@ -1,4 +1,5 @@
-﻿using Npgsql;
+﻿using Microsoft.EntityFrameworkCore;
+using Npgsql;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,19 +8,13 @@ using System.Threading.Tasks;
 
 namespace Login.Infrastructure
 {
-    public class DbConnection : IDisposable
+    public class DbConnection : DbContext
     {
-        public NpgsqlConnection Connection { get; private set; }
+        public DbSet<User> Usuarios { get; set; }
 
-        public DbConnection()
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            Connection = new NpgsqlConnection("User ID=postgres;Password=8888;Host=localhost;Port=5432;Database=Login;");
-            Connection.Open();
-        }
-
-        public void Dispose()
-        {
-            Connection.Dispose();
+            optionsBuilder.UseNpgsql("Host=localhost;Database=Login;Username=postgres;Password=8888");
         }
     }
 }

@@ -17,13 +17,11 @@ namespace Login
         }
         bool VerificarUsuario(User user)
         {
-            bool nome = false;
             bool senha = false;
             foreach(User usuario in usuarios)
             {
                 if (usuario.username == user.username)
                 {
-                    nome = true;
                     if (usuario.senha == user.senha)
                     {
                         senha = true;
@@ -80,12 +78,7 @@ namespace Login
             }
             usuarios.Add(newUser);
             var userRepository = new UserRepository();
-            if (!userRepository.Add(newUser))
-            {
-                lResCadastro.ForeColor = Color.Red;
-                lResCadastro.Text = "Erro ao cadastrar usuário!";
-                return;
-            }
+            userRepository.Add(newUser);
             lResCadastro.ForeColor = Color.ForestGreen;
             lResCadastro.Text = "Cadastro realizado com sucesso!";
         }

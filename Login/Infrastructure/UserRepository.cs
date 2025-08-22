@@ -9,19 +9,15 @@ namespace Login.Infrastructure
 {
     internal class UserRepository
     {
-        public bool Add(User user)
+        private readonly DbConnection _context = new DbConnection();
+        public void Add(User user)
         {
-            using var conn = new DbConnection();
-            string query = @"INSERT INTO usuarios (username, senha) VALUES (@username, @senha)";
-            var result = conn.Connection.Execute(sql: query, param: user);
-            return result == 1;
+            _context.Usuarios.Add(user);
+            _context.SaveChanges();
         }
         public List<User> Get()
         {
-            using var conn = new DbConnection();
-            string query = @"SELECT * FROM usuarios";
-            var usuarios = conn.Connection.Query<User>(sql: query);
-            return usuarios.ToList();
+            return _context.Usuarios.ToList();
         }
 
     }

@@ -131,7 +131,7 @@
             // 
             // bEntrar
             // 
-            bEntrar.Location = new Point(111, 203);
+            bEntrar.Location = new Point(108, 215);
             bEntrar.Name = "bEntrar";
             bEntrar.Size = new Size(87, 31);
             bEntrar.TabIndex = 10;
@@ -141,7 +141,7 @@
             // 
             // bCadastrar
             // 
-            bCadastrar.Location = new Point(418, 203);
+            bCadastrar.Location = new Point(420, 215);
             bCadastrar.Name = "bCadastrar";
             bCadastrar.Size = new Size(87, 31);
             bCadastrar.TabIndex = 11;
@@ -152,7 +152,7 @@
             // lResCadastro
             // 
             lResCadastro.AutoSize = true;
-            lResCadastro.Location = new Point(362, 239);
+            lResCadastro.Location = new Point(362, 186);
             lResCadastro.Name = "lResCadastro";
             lResCadastro.Size = new Size(0, 15);
             lResCadastro.TabIndex = 12;
@@ -160,7 +160,7 @@
             // lResLogin
             // 
             lResLogin.AutoSize = true;
-            lResLogin.Location = new Point(55, 239);
+            lResLogin.Location = new Point(55, 186);
             lResLogin.Name = "lResLogin";
             lResLogin.Size = new Size(0, 15);
             lResLogin.TabIndex = 13;
@@ -185,7 +185,11 @@
             Controls.Add(tBLoginUsuario);
             Controls.Add(lCadastro);
             Controls.Add(lLogin);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
             Name = "Form1";
+            ShowIcon = false;
+            StartPosition = FormStartPosition.CenterScreen;
             Text = "Form1";
             ResumeLayout(false);
             PerformLayout();
